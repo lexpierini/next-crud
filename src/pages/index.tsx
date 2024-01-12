@@ -1,7 +1,14 @@
+import Layout from '@/components/Layout'
+
 export default function Home() {
   return (
-    <div className="flex h-screen justify-center items-center">
-      <span className="text-4xl">Next CRUD</span>
+    <div
+      className="flex justify-center items-center h-screen bg-gradient-to-r
+               from-blue-500 to-purple-500 text-white"
+    >
+      <Layout title="Simple register">
+        <span>Content</span>
+      </Layout>
     </div>
   )
 }
