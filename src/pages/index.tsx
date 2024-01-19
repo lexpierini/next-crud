@@ -3,8 +3,11 @@ import Form from '@/components/Form'
 import Layout from '@/components/Layout'
 import Table from '@/components/Table'
 import Client from '@/core/Client'
+import { useState } from 'react'
 
 export default function Home() {
+  const [show, setShow] = useState<'table' | 'form'>('table')
+
   const clients = [
     new Client('Ana', 34, '1'),
     new Client('Bia', 45, '2'),
@@ -14,6 +17,8 @@ export default function Home() {
 
   const selectedClient = (client: Client) => {}
 
+  const saveClient = (client: Client) => {}
+
   const deletedClient = (client: Client) => {}
 
   return (
@@ -22,17 +27,30 @@ export default function Home() {
                from-blue-500 to-purple-500 text-white"
     >
       <Layout title="Simple register">
-        <div className="flex justify-end">
-          <Button color="green" className="mb-4">
-            New Client
-          </Button>
-        </div>
-        {/* <Table
-          clients={clients}
-          selectedClient={selectedClient}
-          deletedClient={deletedClient}
-        /> */}
-        <Form client={clients[0]} />
+        {show === 'table' ? (
+          <>
+            <div className="flex justify-end">
+              <Button
+                color="green"
+                onClick={() => setShow('form')}
+                className="mb-4"
+              >
+                New Client
+              </Button>
+            </div>
+            <Table
+              clients={clients}
+              selectedClient={selectedClient}
+              deletedClient={deletedClient}
+            />
+          </>
+        ) : (
+          <Form
+            client={clients[0]}
+            onSave={saveClient}
+            onCancel={() => setShow('table')}
+          />
+        )}
       </Layout>
     </div>
   )
