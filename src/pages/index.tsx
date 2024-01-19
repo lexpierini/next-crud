@@ -1,3 +1,4 @@
+import Button from '@/components/Button'
 import Layout from '@/components/Layout'
 import Table from '@/components/Table'
 import Client from '@/core/Client'
@@ -20,6 +21,11 @@ export default function Home() {
                from-blue-500 to-purple-500 text-white"
     >
       <Layout title="Simple register">
+        <div className="flex justify-end">
+          <Button cor="green" className="mb-4">
+            New Client
+          </Button>
+        </div>
         <Table
           clients={clients}
           selectedClient={selectedClient}

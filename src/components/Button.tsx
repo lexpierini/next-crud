@@ -1,0 +1,20 @@
+import { ReactNode } from 'react'
+
+type ButtonProps = {
+  cor?: 'green' | 'blue' | 'gray'
+  className?: string
+  children: ReactNode
+}
+
+export default function Button(props: ButtonProps) {
+  const cor = props.cor ?? 'gray'
+
+  return (
+    <button
+      className={`bg-gradient-to-r from-${cor}-400 to-${cor}-700 text-white
+                  px-4 py-2 rounded-md ${props.className}`}
+    >
+      {props.children}
+    </button>
+  )
+}
