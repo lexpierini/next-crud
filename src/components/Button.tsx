@@ -1,13 +1,13 @@
 import { ReactNode } from 'react'
 
 type ButtonProps = {
-  cor?: 'green' | 'blue' | 'gray'
+  color?: 'green' | 'blue' | 'gray'
   className?: string
   children: ReactNode
 }
 
 export default function Button(props: ButtonProps) {
-  const cor = props.cor ?? 'gray'
+  const cor = props.color ?? 'gray'
 
   return (
     <button
