@@ -6,6 +6,7 @@ import Client from '@/core/Client'
 import { useState } from 'react'
 
 export default function Home() {
+  const [client, setClient] = useState<Client>(Client.empty())
   const [show, setShow] = useState<'table' | 'form'>('table')
 
   const clients = [
@@ -15,9 +16,19 @@ export default function Home() {
     new Client('Pedro', 54, '4'),
   ]
 
-  const selectedClient = (client: Client) => {}
+  const selectedClient = (client: Client) => {
+    setClient(client)
+    setShow('form')
+  }
 
-  const saveClient = (client: Client) => {}
+  const newClient = () => {
+    setClient(Client.empty())
+    setShow('form')
+  }
+
+  const saveClient = (client: Client) => {
+    setShow('table')
+  }
 
   const deletedClient = (client: Client) => {}
 
@@ -30,11 +41,7 @@ export default function Home() {
         {show === 'table' ? (
           <>
             <div className="flex justify-end">
-              <Button
-                color="green"
-                onClick={() => setShow('form')}
-                className="mb-4"
-              >
+              <Button color="green" onClick={newClient} className="mb-4">
                 New Client
               </Button>
             </div>
@@ -46,7 +53,7 @@ export default function Home() {
           </>
         ) : (
           <Form
-            client={clients[0]}
+            client={client}
             onSave={saveClient}
             onCancel={() => setShow('table')}
           />
